@@ -4,12 +4,13 @@ import Privacity from "./components/Privacity";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
 import Ticket from "./components/Ticket";
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import PdfTicket from "./components/PdfTicket";
 
 function App() {
   const queryClient = new QueryClient();
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
@@ -18,7 +19,8 @@ function App() {
 
           <Route path="/avisoprivacidad" element={<Privacity />} />
           {/*<Route path="/ticket/:store/:id" element={<Ticket />} />*/}
-          <Route path="/ticket" element={<Ticket />} />
+          {/*<Route path="/ticket" element={<Ticket />} />*/}
+          <Route path="/prueba" element={<PdfTicket />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
