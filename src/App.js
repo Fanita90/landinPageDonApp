@@ -7,7 +7,7 @@ import Ticket from "./components/Ticket";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import PdfTicket from "./components/PdfTicket";
-
+import { PDFViewer } from "@react-pdf/renderer";
 function App() {
   const queryClient = new QueryClient();
 
