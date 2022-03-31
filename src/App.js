@@ -6,8 +6,8 @@ import Home from "./components/Home";
 import Ticket from "./components/Ticket";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import PdfTicket from "./components/PdfTicket";
-import { PDFViewer } from "@react-pdf/renderer";
+
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -19,8 +19,9 @@ function App() {
 
           <Route path="/avisoprivacidad" element={<Privacity />} />
           {/*<Route path="/ticket/:store/:id" element={<Ticket />} />*/}
-          {/*<Route path="/ticket" element={<Ticket />} />*/}
-          <Route path="/prueba" element={<PdfTicket />} />
+          <Route path="/ticket" element={<Ticket />} />
+          {/*<Route exact path="/pdf" element={<PdfTicket />} />*/}
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
