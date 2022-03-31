@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
 });
 const PdfTicket = () => {
-  const { store, operationID, auth } = useParams();
+  const { store, id} = useParams();
   const { data: transaction } = useQuery("tx", async () => {
     const data = await fetchTx(store, auth, operationID);
     console.log("soy data", data);
@@ -122,6 +122,9 @@ const PdfTicket = () => {
                 <>
                   <Text style={styles.section}>
                     Número de ticket: {transaction.request.upc}
+                  </Text>
+                  <Text style={styles.section}>
+                    id: {id}
                   </Text>
                   <Text style={styles.section}>Número de tienda:{store}</Text>
 
