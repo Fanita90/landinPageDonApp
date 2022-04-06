@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  Image,
-  StyleSheet,
-} from "@react-pdf/renderer";
-import { useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
-import { fetchTx } from "../services/tiket";
-import NavbarPdf from "./NavbarPdf";
+import {Document,Page,Text,View,Image,StyleSheet} from "@react-pdf/renderer";
 import logo from "../assets/logo-icon.png";
 
 const styles = StyleSheet.create({
@@ -20,21 +9,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     color: "#ef2b43",
     textAlign: "justify-content",
-    padding: ".5rem",
-    margin: "0rem 0rem 0rem 2rem",
+    padding: "8px",
+    margin: "0px 0px 0px 32px",
   },
   info: {
     color: "#6533ff",
     fontWeight: "bold",
-    padding: ".5rem",
-    margin: "1rem",
+    padding: "8px",
+    margin: "16px",
     textAlign: "justify-content",
   },
   info1: {
     color: "#2fb1ea",
     fontWeight: "bold",
-    padding: ".5rem",
-    margin: "1rem",
+    padding: "8px",
+    margin: "16px",
     textAlign: "justify-content",
   },
 
@@ -49,7 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     color: "#2fb1ea",
     textAlign: "center",
-    padding: ".5rem",
+    padding: "8px",
   },
   div: {
     display: "flex",
@@ -57,23 +46,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     textAlign: "center",
-    padding: "1rem",
+    padding: "16px",
   },
 });
-const PdfTicket = () => {
-  const { store, id} = useParams();
-  const { data: transaction } = useQuery("tx", async () => {
-    const data = await fetchTx(store, auth, operationID);
-    console.log("soy data", data);
-    return data;
-  });
+const PdfTicket = ({ transaction }) => {
   return (
     <>
-      {/*<NavbarPdf />*/}
       <Document>
-        <Page
-          size="A4"
-          style={{
+        <Page size="A4" style={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -84,31 +64,27 @@ const PdfTicket = () => {
             style={{
               backgroundColor: "white",
               width: "80%",
-              margin: "2rem auto",
-              padding: "2rem",
+              margin: "32px auto",
+              padding: "32px",
               borderRadius: "20px",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
             <View>
-              <Image
-                src="../assets/logo.png"
-                style={{ maxWidth: "250px", maxHeight: "250px" }}
-                alt="logo"
-              />
+              <Image src={logo} style={{ maxWidth: "250px", maxHeight: "250px" }} alt="logo" />
               <Text
                 style={{
                   display: "flex",
-                  margin: "2rem",
+                  margin: "32px",
                   fontWeight: "bold",
                   color: "#a58ffd",
-                  fontSize: "1.5rem",
+                  fontSize: "18px",
                   textAlign: "center",
                   justifyContent: "space-evenly",
                 }}
               >
-                ¡Muchas gracias por tu compra en Don App Soporte!<br></br>Con la
+                ¡Muchas gracias por tu compra en {transaction.branchName}!<br></br> Con la
                 plataforma Don App.
               </Text>
 
@@ -120,14 +96,8 @@ const PdfTicket = () => {
             <View>
               {transaction && (
                 <>
-                  <Text style={styles.section}>
-                    Número de ticket: {transaction.request.upc}
-                  </Text>
-                  <Text style={styles.section}>
-                    id: {id}
-                  </Text>
-                  <Text style={styles.section}>Número de tienda:{store}</Text>
-
+                  <Text style={styles.section}>Referencia: {transaction.reference}</Text>
+                  <Text style={styles.section}>Nombre de tienda:{transaction.branchName}</Text>
                   <Text style={styles.section}>
                     Número de autorización: {transaction.auth}
                   </Text>
@@ -135,11 +105,14 @@ const PdfTicket = () => {
                     Transacción: {transaction.service}
                   </Text>
                   <Text style={styles.section}>
-                    Monto: ${transaction.amount}{" "}
+                    Monto: ${transaction.amount}
                   </Text>
-                  <Text style={styles.section}>
-                    Comisión:${transaction.donAppFee}{" "}
-                  </Text>
+                  {transaction.customerFee > 0 ?? <Text style={styles.section}>
+                    Comisión:${transaction.customerFee}
+                  </Text>}
+                  {transaction.pin && <Text style={styles.section}>
+                    Pin: {transaction.pin}
+                  </Text>}
                   <Text style={styles.section}>
                     Fecha: {transaction.createDateTime}
                   </Text>
@@ -147,19 +120,13 @@ const PdfTicket = () => {
               )}
             </View>
             <Text style={styles.division}>
-              {" "}
               ──────────────── DUDAS O ACLARACIONES ────────────────
             </Text>
             <View style={styles.div}>
               <Text style={styles.info}>
-                Para cualquier duda o aclaracion con tu pago, comunicate al
-                servicio de atencoon a clientes de TotalPlay al telefono
-                1579-8000 del D.F. y Area Metropolitana o al 01800 510 0510 del
-                interior de la Republica. No olvides consevar tu comprobante de
-                pago.
+                {transaction.legend}
               </Text>
             </View>
-
             <View style={styles.div}>
               <Text style={styles.info1}>
                 Cualquier aclaración, puedes mandar un WhatsApp Soporte DonApp

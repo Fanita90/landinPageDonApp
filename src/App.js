@@ -21,7 +21,7 @@ function App() {
           <Route path="/avisoprivacidad" element={<Privacity />} />
           {/*<Route path="/ticket/:store/:id" element={<Ticket />} />*/}
           {/*<Route path="/ticket" element={<Ticket />} />*/}
-          <Route exact path="/ticket" element={<PdfTicket/>} />
+          <Route exact path="/ticket/:store/:tx" element={<Ticket/>} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
