@@ -1,5 +1,12 @@
 import React from "react";
-import {Document,Page,Text,View,Image,StyleSheet} from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  Image,
+  StyleSheet,
+} from "@react-pdf/renderer";
 import logo from "../assets/logo-icon.png";
 
 const styles = StyleSheet.create({
@@ -9,8 +16,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     color: "#ef2b43",
     textAlign: "justify-content",
-    padding: "8px",
-    margin: "0px 0px 0px 32px",
+    padding: "15px",
+    //margin: "0px 0px 0px 32px",
   },
   info: {
     color: "#6533ff",
@@ -18,6 +25,7 @@ const styles = StyleSheet.create({
     padding: "8px",
     margin: "16px",
     textAlign: "justify-content",
+    fontSize: "16px",
   },
   info1: {
     color: "#2fb1ea",
@@ -25,12 +33,9 @@ const styles = StyleSheet.create({
     padding: "8px",
     margin: "16px",
     textAlign: "justify-content",
+    fontSize: "16px",
   },
 
-  logo: {
-    width: 60,
-    padding: 5,
-  },
   division: {
     display: "flex",
     alignContent: "center",
@@ -39,6 +44,8 @@ const styles = StyleSheet.create({
     color: "#2fb1ea",
     textAlign: "center",
     padding: "8px",
+    fontSize: "16px",
+    align: "center",
   },
   div: {
     display: "flex",
@@ -46,93 +53,99 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     textAlign: "center",
-    padding: "16px",
+    padding: "5px",
+  },
+  logo: {
+    width: "70px",
+    height: "70px",
+    align: "center",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "20px",
   },
 });
 const PdfTicket = ({ transaction }) => {
   return (
     <>
       <Document>
-        <Page size="A4" style={{
+        <Page
+          size="A4"
+          style={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <View
-            style={{
-              backgroundColor: "white",
-              width: "80%",
-              margin: "32px auto",
-              padding: "32px",
-              borderRadius: "20px",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <View>
-              <Image src={logo} style={{ maxWidth: "250px", maxHeight: "250px" }} alt="logo" />
-              <Text
-                style={{
-                  display: "flex",
-                  margin: "32px",
-                  fontWeight: "bold",
-                  color: "#a58ffd",
-                  fontSize: "18px",
-                  textAlign: "center",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                ¡Muchas gracias por tu compra en {transaction.branchName}!<br></br> Con la
-                plataforma Don App.
-              </Text>
-
-              <Text style={styles.division}>
-                {" "}
-                ──────────────── INFORMACIÓN DE COMPRA ────────────────
-              </Text>
+          <View>
+            <View style={styles.container}>
+              <Image src={logo} style={styles.logo} alt="logo" />
             </View>
-            <View>
-              {transaction && (
-                <>
-                  <Text style={styles.section}>Referencia: {transaction.reference}</Text>
-                  <Text style={styles.section}>Nombre de tienda:{transaction.branchName}</Text>
-                  <Text style={styles.section}>
-                    Número de autorización: {transaction.auth}
-                  </Text>
-                  <Text style={styles.section}>
-                    Transacción: {transaction.service}
-                  </Text>
-                  <Text style={styles.section}>
-                    Monto: ${transaction.amount}
-                  </Text>
-                  {transaction.customerFee > 0 ?? <Text style={styles.section}>
-                    Comisión:${transaction.customerFee}
-                  </Text>}
-                  {transaction.pin && <Text style={styles.section}>
-                    Pin: {transaction.pin}
-                  </Text>}
-                  <Text style={styles.section}>
-                    Fecha: {transaction.createDateTime}
-                  </Text>
-                </>
-              )}
-            </View>
-            <Text style={styles.division}>
-              ──────────────── DUDAS O ACLARACIONES ────────────────
+            <Text
+              style={{
+                display: "flex",
+                marginTop: "0px",
+                fontWeight: "bold",
+                color: "#a58ffd",
+                fontSize: "18px",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "20px",
+              }}
+            >
+              ¡Muchas gracias por tu compra en {transaction.branchName}!{"\n"}{" "}
+              Con la plataforma Don App.
             </Text>
-            <View style={styles.div}>
-              <Text style={styles.info}>
-                {transaction.legend}
-              </Text>
-            </View>
-            <View style={styles.div}>
-              <Text style={styles.info1}>
-                Cualquier aclaración, puedes mandar un WhatsApp Soporte DonApp
-                3125933452
-              </Text>
-            </View>
+            <br />
+            <Text style={styles.division}>
+              ---------- Información de la compra ----------
+            </Text>
+          </View>
+          <View>
+            {transaction && (
+              <>
+                <Text style={styles.section}>
+                  Referencia: {transaction.reference}
+                </Text>
+                <Text style={styles.section}>
+                  Nombre de tienda:{transaction.branchName}
+                </Text>
+                <Text style={styles.section}>
+                  Número de autorización: {transaction.auth}
+                </Text>
+                <Text style={styles.section}>
+                  Transacción: {transaction.service}
+                </Text>
+                <Text style={styles.section}>Monto: ${transaction.amount}</Text>
+                {transaction.customerFee > 0 ?? (
+                  <Text style={styles.section}>
+                    Comisión:${transaction.customerFee}
+                  </Text>
+                )}
+                {transaction.pin && (
+                  <Text style={styles.section}>Pin: {transaction.pin}</Text>
+                )}
+                <Text style={styles.section}>
+                  Fecha: {transaction.createDateTime}
+                </Text>
+              </>
+            )}
+          </View>
+          <Text style={styles.division}>
+            ---------- Dudas o aclaraciones ----------
+          </Text>
+          <View style={styles.div}>
+            <Text style={styles.info}>{transaction.legend}</Text>
+          </View>
+          <View style={styles.div}>
+            <Text style={styles.info1}>
+              Cualquier aclaración, puedes mandar un WhatsApp Soporte DonApp
+              3125933452
+            </Text>
           </View>
         </Page>
       </Document>
