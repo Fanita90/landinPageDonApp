@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     color: "#ef2b43",
     textAlign: "justify-content",
-    padding: "15px",
-    //margin: "0px 0px 0px 32px",
+    padding: "10px",
+    fontSize: "16px",
   },
   info: {
     color: "#6533ff",
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "20px",
+    margin: "10px",
   },
 });
 const PdfTicket = ({ transaction }) => {
@@ -89,7 +89,7 @@ const PdfTicket = ({ transaction }) => {
                 display: "flex",
                 marginTop: "0px",
                 fontWeight: "bold",
-                color: "#a58ffd",
+                color: "#ef2b43",
                 fontSize: "18px",
                 textAlign: "center",
                 justifyContent: "center",
@@ -120,7 +120,8 @@ const PdfTicket = ({ transaction }) => {
                 <Text style={styles.section}>
                   Transacción: {transaction.service}
                 </Text>
-                <Text style={styles.section}>Monto: ${transaction.amount}</Text>
+                <Text style={styles.section}>
+                  Monto: ${transaction.amount}</Text>
                 {transaction.customerFee > 0 ?? (
                   <Text style={styles.section}>
                     Comisión:${transaction.customerFee}

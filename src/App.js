@@ -6,7 +6,6 @@ import Home from "./components/Home";
 import Ticket from "./components/Ticket";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import PdfTicket from "./components/PdfTicket";
 
 
 function App() {
@@ -17,12 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-
           <Route path="/avisoprivacidad" element={<Privacity />} />
-          {/*<Route path="/ticket/:store/:id" element={<Ticket />} />*/}
-          {/*<Route path="/ticket" element={<Ticket />} />*/}
-          <Route exact path="/ticket/:store/:tx" element={<Ticket/>} />
-
+          <Route exact path="/ticket/:store/:tx" element={<Ticket />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

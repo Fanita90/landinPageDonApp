@@ -1,61 +1,57 @@
-.container-ticket {
-  background-color: white;
-  width: 80%;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 20px;
-}
-.container-title-ticket {
-  .logo-ticket {
-    width: 6rem;
-    margin: 2rem;
-  }
-  h1 {
-    float: left;
-    margin: 2.5rem 2rem 2rem 2rem;
-    font-weight: bold;
-    color: #a58ffd;
-  }
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+.container-pdf-info{
+
+  margin-top: 8rem;
+ 
 }
 
-hr {
-  border: 0;
-  height: 3px !important;
-  background-image: linear-gradient(
-    to right,
-    #f0f0f0,
-    #6533ff,
-    #ef2b43,
-    #f0f0f0
-  );
-  margin: 3rem;
-}
-.ticket-data{
-  color:#ef2b43;
-    text-align: center;
-padding: .5rem;
-}
 
-.data-div{
-    color:#6533ff;
-    text-align: center;
-    padding: .5rem;
+
+
+
+.infoh5{
+  color: #ad5389;
+  font-family: "Varela Round", sans-serif !important;
 }
-@media (max-width: 1200px) {
-    .container-ticket {
-       min-height: 50rem;
-      }
-    .container-title-ticket {
-        .logo-ticket {
-          width: 8rem;
-          margin: 1rem auto;
-          display: block;
-        }
-        h1 {
-        text-align: center;
-          margin: 1rem auto;
-          font-weight: bold;
-          color: #a58ffd;
-        }
-      }
+.btn-ticket {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0.8em 1.5em 0.8em 1.2em;
+  color: white;
+  background: #ad5389;
+  background: linear-gradient(0deg, rgba(77,54,208,1) 0%, rgba(132,116,254,1) 100%);
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+  font-family: "Varela Round", sans-serif !important;
+ }
+ 
+ .btn-ticket svg {
+  margin-right: 8px;
+ }
+ 
+ .btn-ticket:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+ }
+ 
+ .btn-ticket:active {
+  box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+ }
+ .info-h1{
+   text-align: center;
+   color: #ef2b43;
+   margin: 20px;
+   text-shadow: #4747476c 1px 2px 2px;
+ }
+ .info-h2{
+  text-align: center;
+  color: #f5fcff;
+  margin: 20px;
+  text-shadow: #4747476c 1px 2px 2px;
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/bodyPage.scss";
 import logo from "../assets/logo.png";
-import cel from "../assets/cel.PNG";
 import servicios from "../assets/servicios.png";
 import serviciosM from "../assets/serviciosM.png";
 import requisitos from "../assets/requisitos.gif";
@@ -9,7 +8,6 @@ import suma from "../assets/suma.png";
 import resta from "../assets/resta.png";
 import pasos from "../assets/pasos.png";
 import pasoM from "../assets/pasoM.png";
-
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -33,10 +31,7 @@ const BodyPage = () => {
             </h1>
           </div>
         </div>
-        {/*<div className="col-md-12 div-cel">
-          <img className="cel" alt="img-cel" src={cel} />
-        </div>*/}
-        {/*Pasos para obtener DonApp*/}
+       
         <div className="col-md-12 div-cel">
           <a name="requisitos">
             <h1 className="title-pasos">
